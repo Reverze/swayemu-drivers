@@ -1,0 +1,24 @@
+{
+  "name": "rev/swayemu-drivers",
+  "type": "library",
+  "description": "Emulates swayengine drivers",
+  "keywords": [],
+  "authors": [
+    {
+      "name": "Reverze",
+      "email": "hawkmedia24@gmail.com"
+    }
+  ],
+  "license": "GPL-3.0",
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "extra":{
+    "dev-master": "dev"
+  }
+}

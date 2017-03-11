@@ -2,8 +2,22 @@
 
 class SwayErrorHandler
 {
+    /**
+     * Stores all occurred errors defined by user
+     * @var array
+     */
     protected static $user_errors = array();
+
+    /**
+     * Stores all occurred php errors
+     * @var array
+     */
     protected static $php_errors = array();
+
+    /**
+     * Stores all uncaughted exceptions
+     * @var \Exception[]
+     */
     protected static $uncaught_exceptions = array();
 
 

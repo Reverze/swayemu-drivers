@@ -1,10 +1,14 @@
 <?php
 
+
 class SwayExPage
 {
+
     private static $config = array();
-    private static $ex_pages = array();
+
+
     private static $templates = array();
+
 
     private static $template = "global";
 
@@ -21,6 +25,7 @@ class SwayExPage
         register_shutdown_function(array("SwayExPage", "onExit"));
         self::$_to_call_functions['on_exit'] = array();
     }
+
 
     public static function Disable()
     {

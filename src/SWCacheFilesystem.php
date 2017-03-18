@@ -23,7 +23,7 @@ class SWCacheFilesystem implements SWCacheInterface
             $createDirectoryResult = mkdir($fileSystemCacheDirectory);
 
             if (!$createDirectoryResult){
-                throw new SWPermissionException ("Cannot create directory 'filesystem'. Path: '" . $fileSystemCacheDirectory . "'");
+                throw new Exception ("Cannot create directory 'filesystem'. Path: '" . $fileSystemCacheDirectory . "'");
             }
 
         }
@@ -31,13 +31,13 @@ class SWCacheFilesystem implements SWCacheInterface
         if (is_dir($fileSystemCacheDirectory)){
             $this->filesystemCacheDirectory = $fileSystemCacheDirectory;
 
-            $appCacheDirectory = (new SWPath())->path($this->filesystemCacheDirectory . '/' . SwayEngine::$app->appIdentifier);
+            $appCacheDirectory = (new SWPath())->path($this->filesystemCacheDirectory . '/' . 'app');
 
             if (!is_dir($appCacheDirectory)){
                 $createDirectoryResult = mkdir($appCacheDirectory);
 
                 if (!$createDirectoryResult){
-                    throw new SWPermissionException ("Cannot create directory '" . SwayEngine::$app->appIdentifier .
+                    throw new Exception ("Cannot create directory '" . 'app' .
                         "'. Path: '" . $appCacheDirectory . "'");
                 }
             }
@@ -58,7 +58,7 @@ class SWCacheFilesystem implements SWCacheInterface
             $result = $this->createAppCacheProfile();
 
             if (!$result){
-                throw new SWWriteFileException ("Cannot create file 'profile.json' on Path: '" . $this->appCacheDirectory . "'");
+                throw new Exception ("Cannot create file 'profile.json' on Path: '" . $this->appCacheDirectory . "'");
             }
         }
 
@@ -72,7 +72,7 @@ class SWCacheFilesystem implements SWCacheInterface
 
                 if ($appCacheProfile['visibility'] === 'private'){
                     if (SwayEngine::$app->appIdentifier !== $this->appCacheProfileName){
-                        throw new SWPermissionException ("Cannot access to private cache '" . $this->appCacheProfileName . "'");
+                        throw new Exception ("Cannot access to private cache '" . $this->appCacheProfileName . "'");
                     }
                 }
             }
@@ -105,7 +105,7 @@ class SWCacheFilesystem implements SWCacheInterface
         $cacheFilePath = $tmpCacheBuilder . $cachePathTree[sizeof($cachePathTree) - 1];
 
         if (!is_file($cacheFilePath)){
-            throw new SWReadException ("No cache on path: '" . $cachePath ."'");
+            throw new Exception ("No cache on path: '" . $cachePath ."'");
         }
 
         if (is_file($cacheFilePath)){
@@ -126,7 +126,7 @@ class SWCacheFilesystem implements SWCacheInterface
 
         foreach ($cachePathTree as $cachePathNode){
             if (!preg_match('/^[a-zA-Z0-9\-\_]+/', $cachePathNode)){
-                throw new SWInvalidPathException ("Cache path is invalid! '" . $cachePath . "'");
+                throw new Exception ("Cache path is invalid! '" . $cachePath . "'");
             }
         }
 
@@ -157,7 +157,7 @@ class SWCacheFilesystem implements SWCacheInterface
                 (is_array($data) ? json_encode($data) : (string) $data));
 
             if (!$writeResult){
-                throw new SWWriteFileException ("Cannot write data to file: '" . $cacheFilePath . "'" );
+                throw new Exception ("Cannot write data to file: '" . $cacheFilePath . "'" );
             }
         }
     }
@@ -172,7 +172,7 @@ class SWCacheFilesystem implements SWCacheInterface
             return $jsonData;
         }
         else{
-            throw new SWParseException ("Cannot parse profile from json to array");
+            throw new Exception ("Cannot parse profile from json to array");
         }
     }
 

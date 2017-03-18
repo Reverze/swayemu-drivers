@@ -179,7 +179,7 @@ class SWCacheFilesystem implements SWCacheInterface
     private function createAppCacheProfile()
     {
         $cacheProfileData = array();
-        $cacheProfileData['name'] = SwayEngine::$app->appIdentifier;
+        $cacheProfileData['name'] = 'app';
         $cacheProfileData['visibility'] = $this->cacheVisibility;
         $cacheProfileData['createTime'] = (int) time();
         $cacheProfileData['modifyTime'] = (int) time();

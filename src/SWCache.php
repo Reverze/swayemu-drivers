@@ -17,7 +17,7 @@ class SWCache
             $createCacheDirectoryResult = mkdir($cacheDirectory);
 
             if (!$createCacheDirectoryResult){
-                throw new SWPermissionException ("Cannot create directory 'cache'. Path: '" . $cacheDirectory . "'");
+                throw new Exception ("Cannot create directory 'cache'. Path: '" . $cacheDirectory . "'");
             }
         }
 
@@ -27,7 +27,7 @@ class SWCache
             $this->cacheSystemController = new SWCacheFilesystem($visibility);
         }
         else{
-            throw new SWUnsupportedException ("Cache mode '" . $mode . "' is unsupported");
+            throw new Exception ("Cache mode '" . $mode . "' is unsupported");
         }
 
     }

@@ -13,9 +13,7 @@
   "require": {
   },
   "autoload": {
-    "psr-4": {
-      "\\": "src/"
-    }
+    "classmap": [ "src/" ]
   },
   "minimum-stability": "dev",
   "extra":{
